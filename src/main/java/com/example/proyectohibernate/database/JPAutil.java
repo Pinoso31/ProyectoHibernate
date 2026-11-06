@@ -1,5 +1,6 @@
 package com.example.proyectohibernate.database;
 
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
@@ -10,25 +11,26 @@ public class JPAutil {
 
     private static EntityManagerFactory entityManagerFactory;
 
-    public static synchronized void iniciar () {
-        if (entityManagerFactory == null) {
-            String password = System.getenv("1234");
-            if(password == null || password.isEmpty()) {
-                throw new RuntimeException("DB_PASSWORD environment variable is empty");
-            }
+    public static synchronized void iniciar() {
 
-            Map<String, Object> propiedades = new HashMap<>();
-            propiedades.put("jakarta.persistance.jdbc.password", password);
-            entityManagerFactory = Persistence.createEntityManagerFactory("bibliotecaPU", propiedades);
+        if (entityManagerFactory == null) {
+
+            entityManagerFactory =
+                    Persistence.createEntityManagerFactory("bibliotecaPU");
+
         }
     }
-    public static EntityManagerFactory getEntityManagerFactory() {
+
+    public static EntityManagerFactory getEntityManager() {
         iniciar();
-        return entityManagerFactory.createEntityManager().getEntityManagerFactory();
+        return entityManagerFactory;
     }
 
     public static synchronized void cerrar() {
-        if(entityManagerFactory != null && entityManagerFactory.isOpen()) {
+
+        if (entityManagerFactory != null
+                && entityManagerFactory.isOpen()) {
+
             entityManagerFactory.close();
             entityManagerFactory = null;
         }

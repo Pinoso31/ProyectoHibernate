@@ -1,57 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/18"
-      xmlns:fx="http://javafx.com/fxml/1"
-      spacing="10"
-      padding="20">
+<VBox prefHeight="652.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectohibernate.controller.LibroController">
 
 
-    <Label text="Registro de libros"/>
+    <Label text="Registro de libros" />
 
 
     <GridPane hgap="10" vgap="5">
 
 
 
-        <Label text="Título:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-        <TextField promptText="Título del libro" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <Label text="Título:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <TextField fx:id="txtTitulo" promptText="Título del libro" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
 
-        <Label text="Autor:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-        <TextField promptText="Autor del libro" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        <Label text="Autor:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField fx:id="txtAutor" promptText="Autor del libro" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
 
-        <Label text="Año:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-        <TextField promptText="Año de publicación" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        <Label text="Año:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <TextField fx:id="txtAnioPublicacion" promptText="Año de publicación" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
 
-        <Label text="Price:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-        <TextField promptText="Price del libro" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+        <Label text="Precio:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <TextField fx:id="txtPrecio" promptText="Price del libro" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <columnConstraints>
+         <ColumnConstraints />
+         <ColumnConstraints />
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+      </rowConstraints>
+      <padding>
+         <Insets left="5.0" top="10.0" />
+      </padding>
     </GridPane>
 
 
-    <HBox spacing="10">
-        <Button text="Guardar libro"/>
-        <Button text="Cargar libros"/>
+    <HBox spacing="5.0">
+        <Button fx:id="btnGuardar" blendMode="DARKEN" onAction="#guardar" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Guardar libro" />
+        <Button fx:id="btnCargar" onAction="#cargar" style="-fx-background-color: #2196F3; -fx-text-fill: white;" text="Cargar libros" />
+      <Button fx:id="btnModificar" mnemonicParsing="false" onAction="#modificar" style="-fx-background-color: #000000; -fx-text-fill: white;" text="Modificar libro" />
+      <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminar" style="-fx-background-color: red; -fx-text-fill: White;" text="Eliminar libro" />
+      <Button fx:id="btnLimpiar" mnemonicParsing="false" onAction="#limpiarFormulario" text="Limpiar campos" />
+      <padding>
+         <Insets bottom="10.0" top="10.0" />
+      </padding>
     </HBox>
 
 
-    <TableView prefHeight="200">
+    <TableView fx:id="tblLibros" prefHeight="200">
         <placeholder>
-            <Label text="Tabla sin contenido"/>
+            <Label text="Tabla sin contenido" />
         </placeholder>
         <columns>
-            <TableColumn text="ID" prefWidth="60"/>
-            <TableColumn text="Título" prefWidth="150"/>
-            <TableColumn text="Autor" prefWidth="120"/>
-            <TableColumn text="Año" prefWidth="80"/>
-            <TableColumn text="Price" prefWidth="100"/>
+            <TableColumn fx:id="colId" prefWidth="60" text="ID" />
+            <TableColumn fx:id="colTitulo" prefWidth="150" text="Título" />
+            <TableColumn fx:id="colAutor" prefWidth="120" text="Autor" />
+            <TableColumn fx:id="ColAnio" prefWidth="188.79998779296875" text="Año" />
+            <TableColumn fx:id="colPrecio" minWidth="4.0" prefWidth="120.0" text="Precio" />
         </columns>
     </TableView>
 
